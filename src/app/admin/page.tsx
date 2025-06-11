@@ -54,7 +54,10 @@ export default function AdminPage() {
 
   const handleExport = () => {
     if (submissions.length === 0) return;
-    const csv = convertToCSV(submissions);
+    const csv = convertToCSV(
+      submissions.map((s) => ({ ...s } as Record<string, string | number | boolean | null | undefined>))
+    );
+
     downloadCSV(csv);
   };
 
